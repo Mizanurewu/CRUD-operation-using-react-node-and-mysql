@@ -3,8 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import LoadData from '../LoadData/LoadData';
-
+import { useMutation, queryCache } from 'react-query';
 
 const AllData = ({ n }) => {
     const { id, author, content, date, imageUrl, time, title } = n;
@@ -16,10 +15,8 @@ const AllData = ({ n }) => {
         }
     }
     return (
-
-
         <div className="card w-120 bg-base-300 shadow-lg h-120 mt-5 mx-auto p-4">
-            <h1 className='text-xl font-semibold'>{title}</h1>
+            <h1 className='text-xl font-semibold my-4'>{title}</h1>
             <figure>
                 <img className='h-[200px] w-[400px]' src={imageUrl} alt="Shoes" />
             </figure>
@@ -44,13 +41,13 @@ const AllData = ({ n }) => {
                 </div>
                 <div className="card-actions justify-end">
 
-                    <button className="btn btn-warning">Update</button>
+                    <Link className='btn -btn-primary' to={`/update-news/${id}`}>Update</Link>
                     <button onClick={() => handleDelete(id)} className="btn btn-warning">Delete</button>
                 </div>
             </div>
             <ToastContainer
-            position="top-center"
-             />
+                position="top-center"
+            />
 
         </div>
     );
