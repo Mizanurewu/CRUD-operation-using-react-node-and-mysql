@@ -1,37 +1,67 @@
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 const LoadData = () => {
     const items = ['all', 'business', 'sports', 'world', 'politics', 'miscellaneous', 'entertainment', 'startup', 'technology', 'hatke', 'science', 'automobile'];
     const [allNewsData, setAllNewsData] = useState([]);
 
-    const handleLoadData = (param) => {
-        // fetch(`https://inshorts.deta.dev/news?category=${param}`)
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         // console.log(data)
-        //         setAllNewsData(data)
-        //         console.log(allNewsData)
-        //     })
-        const newses = {
-            name: 'Rumpa',
-            email: 'romana@example.com',
-            contact: '15222',
+    const handleLoadData = (buttonName) => {
+        fetch(`https://inshorts.deta.dev/news?category=${buttonName}`)
+            .then(res => res.json())
+            .then(allNewsData => {
+                // console.log(data)
+                setAllNewsData(allNewsData)
+                console.log(buttonName)
+                console.log(allNewsData)
+            })
+        // const newses = {
+        //     id: '101014',
+        //     author: 'Mizanur Rahman',
+        //     content: 'Wednesday, August 24, 2022 | Tag Cloud Tags: Biden, EU, Euro, Europe, Joe Biden, Military, News, Russia, Security, UK, Ukraine, United States, ',
+        //     date: '10 jan 2023',
+        //     imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo23tYn4lKpHQfnMMHNWcf3pSMyg3wNQrJT2yFJSHA&s',
+        //     time: '10 pm',
+        //     title: 'IEEE publication',
 
-        }
-        console.log(param)
+        // }
+        console.log(buttonName)
 
-        fetch(`http://localhost:5000/business`, {
+        fetch(`http://localhost:5000/news`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             },
             referrerPolicy: 'origin',
-            body: JSON.stringify(newses),
+            body: JSON.stringify(allNewsData)
         })
-            .then((response) => response.text())
-            .then((message) => console.log(message))
-            .catch((err) => console.error(err));
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
 
+
+        //second 2
+        // fetch(`http://localhost:5000/business`, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     referrerPolicy: 'origin',
+        //     body: JSON.stringify(newses)
+        // })
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         console.log(data);
+        //         // process the response data here
+        //     })
+        //     .catch(error => {
+        //         console.error(error);
+        //     });
+
+        //first 1
         //     fetch(`http://localhost:5000/business`, {
         //     method: 'POST',
         //     headers: {
