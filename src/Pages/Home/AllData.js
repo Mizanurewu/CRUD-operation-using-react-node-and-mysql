@@ -5,39 +5,31 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useMutation, queryCache } from 'react-query';
 
-const AllData = ({ n }) => {
+const AllData = ({ n,handleDelete}) => {
     const { id, author, content, date, imageUrl, time, title } = n;
-    const handleDelete = (id) => {
-        if (window.confirm('are you sure to delete?')) {
-            axios.delete(`http://localhost:5000/delete/${id}`);
-            toast.success("Successfully Deleted");
-
-        }
-    }
+    
+   
     return (
-        <div className="card w-120 bg-base-300 shadow-lg h-120 mt-5 mx-auto p-4">
+        <div className="card w-120 bg-slate-200 shadow-lg h-120 mt-5 mx-auto p-4">
             <h1 className='text-xl font-semibold my-4'>{title}</h1>
             <figure>
-                <img className='h-[200px] w-[400px]' src={imageUrl} alt="Shoes" />
+                <img className='h-[200px] w-[400px] rounded' src={imageUrl} alt="Shoes" />
             </figure>
             <p>{content.length > 200 ? (
                 <>
                     {content.slice(0, 200) + "..."}
-                    <Link className='bg-slate-400' to={`/news/${id}`}>Read More</Link>
+                    <Link className='bg-slate-400 rounded-lg px-1 font-semibold' to={`/news/${id}`}>Read More</Link>
                 </>
             ) : (
                 content
             )}
             </p>
             <div className="card-body flex justify-between">
-                {/* <div >
-                    
-                </div> */}
-
             </div>
             <div className='flex justify-between'>
                 <div>
-                    <p className='my-auto'>Date:{date}</p>
+                    <p className='my-auto text-slate-600'>Date: {date}</p>
+                    <p className='my-auto text-slate-600'>Time: {time}</p>
                 </div>
                 <div className="card-actions justify-end">
 

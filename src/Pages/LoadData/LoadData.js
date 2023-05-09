@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoadData = () => {
     const items = ['all', 'business', 'sports', 'world', 'politics', 'miscellaneous', 'entertainment', 'startup', 'technology', 'hatke', 'science', 'automobile'];
@@ -41,46 +42,6 @@ const LoadData = () => {
             .catch(error => {
                 console.error(error);
             });
-
-
-        //second 2
-        // fetch(`http://localhost:5000/business`, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     referrerPolicy: 'origin',
-        //     body: JSON.stringify(newses)
-        // })
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         console.log(data);
-        //         // process the response data here
-        //     })
-        //     .catch(error => {
-        //         console.error(error);
-        //     });
-
-        //first 1
-        //     fetch(`http://localhost:5000/business`, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     referrerPolicy: 'origin',
-        //     body: JSON.stringify({
-        //         name: 'Rumpa',
-        //         email: 'romana@example.com',
-        //         contact: '15222',
-        //     }),
-        // })
-        //     .then((response) => response.text())
-        //     .then((message) => console.log(message))
-        //     .catch((err) => console.error(err));
-
-
-
-
     }
     return (
 
@@ -90,13 +51,12 @@ const LoadData = () => {
                     className='btn btn-primary'
                     key={index}
                     onClick={() => handleLoadData(buttonName)}
-                    style={{ margin: '5px' }} // add margin to the button
+                    style={{ margin: '5px' }} 
                 >
                     <span style={{ padding: '5px' }}>{buttonName}</span>
                 </button>
             ))}
-            {/* <p>Selected button: {selectedButton}</p> */}
-            <h1>all data {allNewsData.length}</h1>
+            
         </div>
 
     );

@@ -1,5 +1,8 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const UpdateNews = () => {
     const news = useLoaderData();
@@ -24,7 +27,10 @@ const UpdateNews = () => {
             body: JSON.stringify({ author, title, imageUrl, time, date, content})
         })
             .then(response => response.text())
-            .then(result => console.log(result))
+            .then(result => {
+                console.log(result)
+                toast.success("Successfully Updated");
+            })
             .catch(error => console.log(error));
 
     }
@@ -109,6 +115,9 @@ const UpdateNews = () => {
                     <input className="btn btn-primary" type='submit' value='Update' />
                 </div>
             </form>
+            <ToastContainer
+                position="top-center"
+            />
         </div>
     );
 };

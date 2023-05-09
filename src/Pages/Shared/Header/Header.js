@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
+    const [isLogin, setIsLogin] = useState(true);
     return (
         <div>
-            <div className="navbar bg-base-100">
+            <div className="navbar bg-sky-100">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -26,7 +27,17 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link to='/login' className="btn">Login</Link>
+                    {
+                        isLogin ? (
+                            <Link to="/login" className="btn" onClick={() => setIsLogin(false)}>Logout</Link>
+                            
+                        ) : (
+                            <Link  className="btn" onClick={() => setIsLogin(true)}>Login</Link>
+
+                        )
+
+                    }
+                    {/* <Link to='/login' className="btn">Login</Link> */}
                 </div>
             </div>
 
